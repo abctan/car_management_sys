@@ -1,4 +1,6 @@
 #include <stdio.h>
+#include "list.h"
+#include "kfifo.h"
 
 int main()
 {
