@@ -5,15 +5,16 @@ CC 				:= $(CROSS_COMPILE)gcc
 LD				:= $(CROSS_COMPILE)ld
 
 INCDIRS 		:= common \
+                   source/car
 				   
 				   			   
 SRCDIRS			:= project \
-				   common \
-				   drv \
+				   common  \
+				   source/car \
 
 				   
 				   
-INCLUDE			:= $(patsubst %, -I %, $(INCDIRS))
+INCLUDE			:= $(patsubst %,-I%, $(INCDIRS))
 
 CFILES			:= $(foreach dir, $(SRCDIRS), $(wildcard $(dir)/*.c))
 
@@ -24,7 +25,8 @@ OBJS			:= $(patsubst %, obj/%, $(CFILENDIR:.c=.o))
 VPATH			:= $(SRCDIRS)
 
 .PHONY: clean
-	
+
+
 $(TARGET) : $(OBJS)
 	$(CC) $^ -o $@
 $(OBJS) : obj/%.o : %.c
