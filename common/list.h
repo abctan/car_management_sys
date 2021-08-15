@@ -2,6 +2,8 @@
 #ifndef __LIST_H
 #define __LIST_H
 
+#include <stdio.h>
+
 /* 内核双向循环链表 */
 /*
  * Simple doubly linked list implementation.
@@ -13,18 +15,12 @@
  * using the generic single-entry routines.
  */
 struct list_head {
-	struct list_head *next;
-	struct list_head *prev;
+	struct list_head *next, *prev;
 };
 
 #define container_of(ptr, type, member) \
     (type *)((char *)(ptr) - (char *) &((type *)0)->member)
 
-
-#define LIST_HEAD_INIT(name) { &(name), &(name) }
-
-#define LIST_HEAD(name) \
-	struct list_head name = LIST_HEAD_INIT(name)
 
 static inline void INIT_LIST_HEAD(struct list_head *list)
 {
