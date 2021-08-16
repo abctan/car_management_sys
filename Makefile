@@ -1,18 +1,21 @@
-CROSS_COMPILE 	?=
+CROSS_COMPILE 	        ?=
 TARGET		  	?= car
 
-CC 				:= $(CROSS_COMPILE)gcc
-LD				:= $(CROSS_COMPILE)ld
+CC 			:= $(CROSS_COMPILE)gcc
+LD			:= $(CROSS_COMPILE)ld
 
 INCDIRS 		:= common \
-                   source/car
+                           source/car \
+			   source/fwlist
 				   
 				   			   
 SRCDIRS			:= project \
-				   common  \
-				   source/car \
+		           common  \
+		           source/car \
+			   source/fwlist
 
-				   
+LIB                     := -lpthread
+
 				   
 INCLUDE			:= $(patsubst %,-I%, $(INCDIRS))
 
@@ -28,7 +31,7 @@ VPATH			:= $(SRCDIRS)
 
 
 $(TARGET) : $(OBJS)
-	$(CC) $^ -o $@
+	$(CC) $^ $(LIB) -o $@
 $(OBJS) : obj/%.o : %.c
 	$(CC) -c $< $(INCLUDE) -o $@ 
 	
