@@ -55,5 +55,6 @@ int del_node_car(node_car_t *node);
 int update_node_car(node_car_t *old, node_car_t *new);
 // 打印一个节点信息
 void print_node_car(node_car_t *node_car);
+void print_node_car_data(void *car);
 
 #endif // !__CAR_H

@@ -7,9 +7,11 @@
 #include <stdlib.h>
 #include <pthread.h>
 
+typedef void (fwlist_op_t)(void *op);
+
 typedef struct {
     void *data;
-    unsigned int frc;
+    // unsigned int frc;
     struct list_head list;
 } fwnode_t;
 
@@ -25,9 +27,12 @@ fwlist_t* create_fwlist(unsigned int size);
 // 销毁框架
 void destroy_fwlist(fwlist_t *handle);
 // 添加数据
-int add_fwlist(void *data, unsigned int count, fwlist_t *handle);
+int add_fwlist(void *data, fwlist_t *handle);
 // 删除数据
-int del_fwlist(fwnode_t *node, fwlist_t *handle);
-
+int del_fwlist(void *data, fwlist_t *handle);
+// 更新数据
+int update_fwlist(void *old, void *new, fwlist_t *handle);
+// 遍历数据
+void fwlist_travel(fwlist_op_t *op, fwlist_t *handle);
 
 #endif // __FWLIST_H

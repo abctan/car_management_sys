@@ -1,8 +1,9 @@
 #include "common.h"
 #include "car.h"
+#include "fwlist.h"
 
 #define MAX 10
-
+/*
 int main()
 {
     node_car_t head;
@@ -29,5 +30,30 @@ int main()
     return SUCCESS;
 ERR0:
     destroy_all_node_car(&head);
+    return FAILURE;
+}
+*/
+
+int main()
+{
+    fwlist_t *fwlist = NULL;
+    node_car_t *cat = NULL;
+
+    fwlist = create_fwlist(sizeof(node_car_t));
+    ERRP(fwlist == NULL, "create fwlist fail!", goto ERR0);
+
+    for (int i = 0; i < MAX; ++i) {
+        cat = create_node_car();
+        add_fwlist(cat, fwlist);
+    }
+
+
+    fwlist_travel(print_node_car_data, fwlist);
+
+    destroy_fwlist(fwlist);
+    
+
+    return SUCCESS;
+ERR0:
     return FAILURE;
 }

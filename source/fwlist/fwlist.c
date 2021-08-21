@@ -15,7 +15,6 @@ fwlist_t* create_fwlist(unsigned int size)
     handle->count = 1;
     pthread_rwlock_init(&handle->rwlock, NULL);
     head->data = NULL;
-    head->frc = 0;
     INIT_LIST_HEAD(&head->list); // init list
 
     return handle;
@@ -47,7 +46,7 @@ ERR0:
     return;        
 }
 
-int add_fwlist(void *data, unsigned int count, fwlist_t *handle)
+int add_fwlist(void *data, fwlist_t *handle)
 {
     fwnode_t *node = NULL;
 
@@ -58,9 +57,8 @@ int add_fwlist(void *data, unsigned int count, fwlist_t *handle)
 
     pthread_rwlock_wrlock(&handle->rwlock);
     node->data = data;
-    node->frc = (count > 0) ? count : 1;
     list_add(&node->list, &handle->head.list);
-    handle->count += node->frc;
+    ++handle->count;
     pthread_rwlock_unlock(&handle->rwlock);
 
     return SUCCESS;
@@ -68,25 +66,61 @@ ERR0:
     return FAILURE;
 }
 
-int del_fwlist(fwnode_t *node, fwlist_t *handle)
+int del_fwlist(void *data, fwlist_t *handle)
 {
     int empty;
+    fwnode_t *node = NULL;
 
-    ERRP((node == NULL || handle == NULL), "del_fwlist param is null !!!", goto ERR0);
+    ERRP((data == NULL || handle == NULL), "del_fwlist param is null !!!", goto ERR0);
 
     empty = list_empty(&handle->head.list);
     ERRP(empty, "fwlist node is empty!", goto ERR0);
 
     pthread_rwlock_wrlock(&handle->rwlock);
-    if (!(--node->frc)) {
-        list_del(&node->list);
-        free(node->data);
-        free(node);
-    }
+    node = list_entry(data, fwnode_t, data);
+    list_del(&node->list);
+    free(node->data);
+    free(node);
     --handle->count;
     pthread_rwlock_unlock(&handle->rwlock);
 
     return SUCCESS;
 ERR0:
     return FAILURE;
+}
+
+int update_fwlist(void *old, void *new, fwlist_t *handle)
+{
+    int empty;
+
+    ERRP((old == NULL || new == NULL || handle == NULL), "update_fwlist param is null !!!", goto ERR0);
+
+    empty = list_empty(&handle->head.list);
+    ERRP(empty, "fwlist node is empty!", goto ERR0);
+
+    pthread_rwlock_wrlock(&handle->rwlock);
+    memcpy(old, new, handle->size);
+    pthread_rwlock_unlock(&handle->rwlock);
+
+    return SUCCESS;
+ERR0:
+    return FAILURE;
+}
+
+void fwlist_travel(fwlist_op_t *op, fwlist_t *handle)
+{
+    struct list_head *pos = NULL;
+    fwnode_t *node = NULL;
+
+    ERRP((op == NULL || handle == NULL), "fwlist_travel param is null !!!", goto ERR0);
+
+    pthread_rwlock_rdlock(&handle->rwlock);
+    list_for_each(pos, &handle->head.list) {
+        node = list_entry(pos, fwnode_t, list);
+        op(node->data);
+    }
+    pthread_rwlock_unlock(&handle->rwlock);
+
+ERR0:
+    return;
 }
