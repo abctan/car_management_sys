@@ -58,6 +58,7 @@ int add_fwlist(void *data, fwlist_t *handle)
     pthread_rwlock_wrlock(&handle->rwlock);
     node->data = data;
     list_add(&node->list, &handle->head.list);
+    ++handle->count;
     pthread_rwlock_unlock(&handle->rwlock);
 
     return SUCCESS;
