@@ -1,18 +1,27 @@
 #ifndef __TYPES_H
 #define __TYPES_H
 
-#define SUCCESS (0)
-#define FAILURE (-1)
+/* bsd */
+typedef unsigned char		u_char;
+typedef unsigned short		u_short;
+typedef unsigned int		u_int;
+typedef unsigned long		u_long;
 
-/* 返回值 */
-typedef enum {
-    FALSE = 0,
-    TRUE  = 1
-} bool;
+/* sysv */
+typedef unsigned char		unchar;
+typedef unsigned short		ushort;
+typedef unsigned int		uint;
+typedef unsigned long		ulong;
+
+typedef unsigned char       bool;
+#define FALSE               0
+#define TRUE                1
+#define SUCCESS             0
+#define FAILURE             (-1)
 
 /* 基本颜色 */
 typedef enum {
-    RED,
+    RED = 0,
     ORANGE,
     YELLOW,
     GREEN,
