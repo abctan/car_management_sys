@@ -158,42 +158,47 @@ ERR0:
 
 void print_node_car(node_car_t *node)
 {
-    ERRP(node == NULL, "print_node_car func param is null!", goto ERR0);
+//     ERRP(node == NULL, "print_node_car func param is null!", goto ERR0);
 
-    printf("---------base----------\n");
-    printf("名称: %s, 颜色: %s, 类型: %s, 速度: %d, 重量: %0.2f, 生产价格: %0.2f, 生产日期: %d\n",
-           node->car.name, g_color[node->car.color], g_car_type[node->car.type], node->car.speed,
-           node->car.weight, node->car.product_price, node->car.product_date);
-    printf("---------other---------\n");
-    printf("数量: %d, 销售: %s, 返厂: %s, 售价: %d, 入库时间: %d, 出库时间: %d\n",
-           node->num, g_bool_string[node->market], g_bool_string[node->factory],
-           node->sell_price, node->push_storage_time, node->pop_storage_time);
-    printf("\n");
+//     printf("---------base----------\n");
+//     printf("名称: %s, 颜色: %s, 类型: %s, 速度: %d, 重量: %0.2f, 生产价格: %0.2f, 生产日期: %f\n",
+//            node->car.name, g_color[node->car.color], g_car_type[node->car.type], node->car.speed,
+//            node->car.weight, node->car.product_price, node->car.product_date);
+//     printf("---------other---------\n");
+//     printf("数量: %d, 销售: %s, 返厂: %s, 售价: %d, 入库时间: %f, 出库时间: %f\n",
+//            node->num, g_bool_string[node->market], g_bool_string[node->factory],
+//            node->sell_price, node->push_storage_time, node->pop_storage_time);
+//     printf("\n");
 
-ERR0:
-    return; 
+// ERR0:
+//     return; 
 }
 
 void print_node_car_data(void *car)
 {
-    node_car_t *node = NULL;
+//     node_car_t *node = NULL;
 
-    ERRP(car == NULL, "print_node_car func param is null!", goto ERR0);
+//     ERRP(car == NULL, "print_node_car func param is null!", goto ERR0);
 
-    node = (node_car_t *)car;
+//     node = (node_car_t *)car;
 
-    printf("---------base----------\n");
-    printf("名称: %s, 颜色: %s, 类型: %s, 速度: %d, 重量: %0.2f, 生产价格: %0.2f, 生产日期: %d\n",
-           node->car.name, g_color[node->car.color], g_car_type[node->car.type], node->car.speed,
-           node->car.weight, node->car.product_price, node->car.product_date);
-    printf("---------other---------\n");
-    printf("数量: %d, 销售: %s, 返厂: %s, 售价: %d, 入库时间: %d, 出库时间: %d\n",
-           node->num, g_bool_string[node->market], g_bool_string[node->factory],
-           node->sell_price, node->push_storage_time, node->pop_storage_time);
-    printf("\n");
+//     printf("---------base----------\n");
+//     printf("名称: %s, 颜色: %s, 类型: %s, 速度: %d, 重量: %0.2f, 生产价格: %0.2f, 生产日期: %d\n",
+//            node->car.name, g_color[node->car.color], g_car_type[node->car.type], node->car.speed,
+//            node->car.weight, node->car.product_price, node->car.product_date);
+//     printf("---------other---------\n");
+//     printf("数量: %d, 销售: %s, 返厂: %s, 售价: %d, 入库时间: %d, 出库时间: %d\n",
+//            node->num, g_bool_string[node->market], g_bool_string[node->factory],
+//            node->sell_price, node->push_storage_time, node->pop_storage_time);
+//     printf("\n");
 
-ERR0:
-    return; 
+// ERR0:
+//     return; 
 }
 
+int main()
+{
+    printf("hello word\n");
+    return 0;
+}
 

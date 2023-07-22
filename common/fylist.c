@@ -125,7 +125,7 @@ ERR0:
 
 
 
-#if 1
+#if 0
 
 struct student {
     int id;
