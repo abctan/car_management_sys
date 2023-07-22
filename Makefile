@@ -13,8 +13,14 @@ INC_DIRS := include common
 # 同上
 SUB_DIRS := common\
 			source/car
-			
 
+# 引入第三方库
+PLUGINS_DIRS := open_source/EasyLogger
+PLUGINS_INCS := open_source/Melon/include \
+				open_source/EasyLogger/easylogger/inc
+
+INC_DIRS += $(PLUGINS_INCS)
+SUB_DIRS += $(PLUGINS_DIRS)
 # 静态/动态库路径
 LIB_DIRS := lib
 
@@ -23,13 +29,13 @@ LIB_DIRS := lib
 OUTPUT := output
 
 # CFLAGS += -Wall -Os -g
-# CLIBS  += -lpthread
+CLIBS  += -lmelon -lpthread
 
 # 将相对路径转换为绝对路径
 CUR_DIRS = $(shell pwd)
 INC_DIRS := $(patsubst %, $(CUR_DIRS)/%, $(INC_DIRS))
 OUTPUT   := $(patsubst %, $(CUR_DIRS)/%, $(OUTPUT))
-
+LIB_DIRS := $(patsubst %, -L$(CUR_DIRS)/%, $(LIB_DIRS))
 # 指定编译器工具名称前缀
 CROSS_COMPILE ?=
 CC = $(CROSS_COMPILE)gcc
@@ -41,7 +47,6 @@ MAKE := make
 export CC LD AS NM MAKE OUTPUT
 # CFLAGS用于C编译器的编译选项。
 CFLAGS += $(patsubst %,-I%,$(INC_DIRS))
-# CFLAGS += $(patsubst %,-L%,$(LIB_DIRS))
 export CFLAGS
 
 ROOTDIR := $(CUR_DIRS)
@@ -51,8 +56,8 @@ export ROOTDIR
 all: $(TARGET)
 
 $(TARGET): $(OUTPUT) $(SUB_DIRS)
-	$(Q)$(CC) $(OUTPUT)/*.o -o $(TARGET)
-	$(if $(Q), $(Q)$(info LD   $@ -o $(TARGET)), )
+	$(Q)$(CC) $(LIB_DIRS) $(CLIBS) $(OUTPUT)/*.o -o $(TARGET) 
+	$(if $(Q), $(Q)$(info LD   $@ $(CLIBS) -o $(TARGET)))
 
 # 创建中间件输出目录
 $(OUTPUT):
