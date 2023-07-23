@@ -5,5 +5,5 @@ OBJS  := $(addprefix $(OUTPUT)/, $(COBJS))
 all: $(OBJS)
 
 $(OUTPUT)/%.o: %.c
-	$(Q)$(CC) -c $(CFLAGS) $^ -o $(OUTPUT)/$(notdir $@)
+	$(Q)$(CC) -c $(CFLAGS) $^ -o $@
 	$(if $(Q), $(Q)$(info CC   $^))

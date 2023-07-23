@@ -11,8 +11,10 @@ export Q
 INC_DIRS := include common
 # 源文件相对路径，以MakeFile所在文件为根目录
 # 同上
-SUB_DIRS := common\
-			source/car
+SUB_DIRS := common \
+			source/car \
+			source/sys \
+			main
 
 # 引入第三方库
 PLUGINS_DIRS := open_source/EasyLogger
@@ -57,7 +59,7 @@ all: $(TARGET)
 
 $(TARGET): $(OUTPUT) $(SUB_DIRS)
 	$(Q)$(CC) $(LIB_DIRS) $(CLIBS) $(OUTPUT)/*.o -o $(TARGET) 
-	$(if $(Q), $(Q)$(info LD   $@ $(CLIBS) -o $(TARGET)))
+	$(if $(Q), $(Q)$(info LD   $(notdir $(OUTPUT))/*.o $(CLIBS) -o $(TARGET)))
 
 # 创建中间件输出目录
 $(OUTPUT):

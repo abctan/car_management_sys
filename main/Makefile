@@ -1,6 +1,10 @@
-CFILES:= $(wildcard *.c)
+CFILES:= main.c
+
+HFILES:= $(ROOTDIR)/source/sys
+
 COBJS := $(CFILES:.c=.o)
 OBJS  := $(addprefix $(OUTPUT)/, $(COBJS))
+CFLAGS += $(patsubst %,-I%,$(HFILES))
 
 all: $(OBJS)
 

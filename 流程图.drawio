@@ -1,5 +1,5 @@
-<mxfile host="Electron" modified="2023-07-22T18:01:47.775Z" agent="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/21.6.5 Chrome/114.0.5735.243 Electron/25.3.1 Safari/537.36" etag="0db2rHYJHTVug7ZzTaWO" version="21.6.5" type="device">
-  <diagram id="C5RBs43oDa-KdzZeNtuy" name="Page-1">
+<mxfile host="Electron" modified="2023-07-23T06:34:31.557Z" agent="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/21.6.5 Chrome/114.0.5735.243 Electron/25.3.1 Safari/537.36" etag="WQRvJgVkuLzG7Ivl7wKR" version="21.6.5" type="device" pages="2">
+  <diagram id="C5RBs43oDa-KdzZeNtuy" name="概述">
     <mxGraphModel dx="1114" dy="1048" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
         <mxCell id="WIyWlLk6GJQsqaUBKTNV-0" />
@@ -89,6 +89,40 @@
               <mxPoint x="349" y="560" />
             </Array>
           </mxGeometry>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+  <diagram id="5h2OKbzxWGVfMsm_OJgG" name="系统初始化">
+    <mxGraphModel dx="1114" dy="1448" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="0" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="qrgPpK7IPSqZC4yX2T2N-10" value="" style="edgeStyle=none;curved=1;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;fontSize=12;startSize=8;endSize=8;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="qrgPpK7IPSqZC4yX2T2N-6" target="qrgPpK7IPSqZC4yX2T2N-15">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="183" y="77" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="qrgPpK7IPSqZC4yX2T2N-6" value="开始" style="rounded=1;whiteSpace=wrap;html=1;fontSize=16;" vertex="1" parent="1">
+          <mxGeometry x="123" y="-103" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="qrgPpK7IPSqZC4yX2T2N-12" value="" style="edgeStyle=none;curved=1;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;fontSize=12;startSize=8;endSize=8;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" target="qrgPpK7IPSqZC4yX2T2N-11">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="182.5" y="57" as="sourcePoint" />
+            <mxPoint x="182.5" y="177" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="qrgPpK7IPSqZC4yX2T2N-14" value="" style="edgeStyle=none;curved=1;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;fontSize=12;startSize=8;endSize=8;" edge="1" parent="1" source="qrgPpK7IPSqZC4yX2T2N-11" target="qrgPpK7IPSqZC4yX2T2N-13">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="qrgPpK7IPSqZC4yX2T2N-11" value="数据库配置" style="whiteSpace=wrap;html=1;fontSize=16;rounded=1;" vertex="1" parent="1">
+          <mxGeometry x="123" y="108" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="qrgPpK7IPSqZC4yX2T2N-13" value="" style="rounded=1;whiteSpace=wrap;html=1;fontSize=16;" vertex="1" parent="1">
+          <mxGeometry x="123" y="219" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="qrgPpK7IPSqZC4yX2T2N-15" value="日志配置" style="rounded=0;whiteSpace=wrap;html=1;fontSize=16;" vertex="1" parent="1">
+          <mxGeometry x="123" y="-3" width="120" height="60" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
