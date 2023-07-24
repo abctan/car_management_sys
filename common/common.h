@@ -4,6 +4,7 @@
 #include <stdio.h>
 #include <string.h>
 #include "types.h"
+#include "elog.h"
 
 //接受字符串宏
 #define GETLINES(string, buf) do{						\
@@ -18,7 +19,7 @@
 #define ERRP(con, string, go) do{					\
 					if ((con))						\
 					{								\
-						printf(#string"\n");	    \
+						log_e(#string"\n");	        \
 						go;						    \
 					}								\
 				}while(0)

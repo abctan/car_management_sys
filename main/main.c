@@ -10,6 +10,9 @@ int main(int argc, char **argv)
 {
     drv_sys_init();
 
+    // 事件
+
+    drv_sys_deinit();
 
     return SUCCESS;
 }

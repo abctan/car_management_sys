@@ -8,12 +8,15 @@ export Q
 # 这个变量留给用户去配置，后面会将INC_DIRS转换成绝对路径，因为编译器只能识别到绝对路径，
 # 之所以填入相对路径，是因为这样对用户来说更加简洁明了。
 # 谨记：将丑陋留给自己，把复杂藏在内部
-INC_DIRS := include common
+INC_DIRS := include \
+			common \
+			source/db
 # 源文件相对路径，以MakeFile所在文件为根目录
 # 同上
 SUB_DIRS := common \
 			source/car \
 			source/sys \
+			source/db \
 			main
 
 # 引入第三方库
@@ -31,7 +34,7 @@ LIB_DIRS := lib
 OUTPUT := output
 
 # CFLAGS += -Wall -Os -g
-CLIBS  += -lmelon -lpthread
+CLIBS  += -lmelon -lpthread -lsqlite3
 
 # 将相对路径转换为绝对路径
 CUR_DIRS = $(shell pwd)
