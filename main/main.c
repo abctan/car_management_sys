@@ -8,7 +8,7 @@
  */
 int main(int argc, char **argv)
 {
-    drv_sys_init();
+    int ret = drv_sys_init(argc, argv);
 
     // 事件
 

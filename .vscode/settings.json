@@ -2,7 +2,12 @@
     "files.associations": {
         "types.h": "c",
         "stdlib.h": "c",
-        "string.h": "c"
+        "string.h": "c",
+        "mln_log.h": "c",
+        "pthread.h": "c",
+        "__threading_support": "c",
+        "sqlite3.h": "c",
+        "elog.h": "c"
     },
     "C_Cpp.errorSquiggles": "disabled"
 }

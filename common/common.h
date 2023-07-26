@@ -23,6 +23,12 @@
 						go;						    \
 					}								\
 				}while(0)
+#define ERRPGO(con, go) do{			        		\
+					if ((con))						\
+					{								\
+						go;						    \
+					}								\
+				}while(0)
 
 // 获取数组长度
 #define ARRAY_SIZE(x) (sizeof(x)/sizeof((x)[0]))

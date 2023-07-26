@@ -3,7 +3,9 @@
 
 #include "types.h"
 
-void drv_sys_init(void);
+int drv_sys_init(int argc, char *argv[]);
+void drv_sys_deinit(void);
+int drv_sys_mln_init(int argc, char *argv[]);
 void drv_log_init(void);
 void drv_debug_func(void);
 

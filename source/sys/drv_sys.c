@@ -1,12 +1,66 @@
 #include "drv_sys.h"
 #include "elog.h"
+#include "drv_db.h"
 #include <stdio.h>
+#include "mln_core.h"
+#include "common.h"
 
-void drv_sys_init(void)
+typedef struct drv_sys {
+    bool init;
+    struct mln_core_attr mln_attr;
+} drv_sys_t;
+
+static drv_sys_t g_drv_sys = {0};
+
+drv_sys_t *get_drv_sys_ctrl(void)
 {
+    return &g_drv_sys;
+}
+
+int drv_sys_init(int argc, char *argv[])
+{
+    drv_sys_t *ctx = get_drv_sys_ctrl();
+
+    if (ctx->init == TRUE) {
+        return SUCCESS;
+    }
+    int ret;
     drv_log_init();
+    ret = drv_sys_mln_init(argc, argv);
+    ERRP(ret != SUCCESS, "mln init err", goto ERR0);
+    drv_db_init();
 
     drv_debug_func();
+
+    ctx->init = TRUE;
+    return SUCCESS;
+ERR0:
+    return FAILURE;
+}
+
+void drv_sys_deinit(void)
+{
+    drv_db_destroy();
+    // elog_set_output_enabled(false);
+
+}
+
+int drv_sys_mln_init(int argc, char *argv[])
+{
+    drv_sys_t *ctx = get_drv_sys_ctrl();
+
+    ctx->mln_attr.argc = argc;
+    ctx->mln_attr.argv = argv;
+    ctx->mln_attr.global_init = NULL;
+    ctx->mln_attr.main_thread = NULL;
+    ctx->mln_attr.master_process = NULL;
+    ctx->mln_attr.worker_process = NULL;
+    int ret = mln_core_init(&ctx->mln_attr);
+    ERRP(ret != 0, "mln_core_init error", goto ERR0);
+
+    return SUCCESS;
+ERR0:
+    return FAILURE;
 }
 
 void drv_log_init(void)
