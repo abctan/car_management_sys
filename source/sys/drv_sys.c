@@ -1,9 +1,11 @@
 #include "drv_sys.h"
+#include "drv_shell_port.h"
 #include "elog.h"
 #include "drv_db.h"
-#include <stdio.h>
 #include "mln_core.h"
 #include "common.h"
+#include <stdio.h>
+#include <signal.h>
 
 typedef struct drv_sys {
     bool init;
@@ -17,6 +19,19 @@ drv_sys_t *get_drv_sys_ctrl(void)
     return &g_drv_sys;
 }
 
+static int sysExit(int value)
+{
+    drv_shell_signal_handler(0);
+    drv_sys_deinit();
+    exit(value);
+    return value;
+}
+
+static void signalHandler(int signal)
+{
+    sysExit(0);
+}
+
 int drv_sys_init(int argc, char *argv[])
 {
     drv_sys_t *ctx = get_drv_sys_ctrl();
@@ -24,13 +39,14 @@ int drv_sys_init(int argc, char *argv[])
     if (ctx->init == TRUE) {
         return SUCCESS;
     }
-    int ret;
+
     drv_log_init();
-    ret = drv_sys_mln_init(argc, argv);
+    int ret = drv_sys_mln_init(argc, argv);
     ERRP(ret != SUCCESS, "mln init err", goto ERR0);
     drv_db_init();
+    drv_shell_init();
 
-    drv_debug_func();
+    signal(SIGINT, signalHandler);
 
     ctx->init = TRUE;
     return SUCCESS;
@@ -91,4 +107,9 @@ void drv_debug_func(void)
     log_i("Hello world!");
     log_d("Hello world!");
     log_v("Hello world!");
+}
+
+void drv_sys_run(void)
+{
+    drv_shell_run();
 }

@@ -8,5 +8,6 @@ void drv_sys_deinit(void);
 int drv_sys_mln_init(int argc, char *argv[]);
 void drv_log_init(void);
 void drv_debug_func(void);
+void drv_sys_run(void);
 
 #endif
